@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Survey Form</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: url(mason.jpg) no-repeat center center fixed;
+            background-size: cover;
+            -webkit-backdrop-filter: blur(8px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Form container styling */
+        .form-container {
+            background-color: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 30px;
+            max-width: 800px;
+            width: 100%;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        /* Keyframe for form fade-in effect */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .section-title {
+            font-size: 20px;
+            font-weight: bold;
+            margin-top: 20px;
+            color: #4CAF50;
+        }
+
+        label {
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .w3-input, .w3-select {
+            margin-bottom: 15px;
+            padding: 12px;
+            font-size: 16px;
+            border-radius: 10px;
+            border: 1px solid #ccc;
+            background-color: rgba(255, 255, 255, 0.8);
+        }
+
+        .w3-button {
+            margin-right: 10px;
+            border-radius: 10px;
+            transition: background-color 0.3s ease;
+        }
+
+        .w3-button:hover {
+            background-color: #3e8e41;
+        }
+
+        /* Tooltip styling */
+        .tooltip {
+            position: relative;
+            display: inline-block;
+            cursor: pointer;
+        }
+
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 160px;
+            background-color: #555;
+            color: #fff;
+            text-align: center;
+            padding: 5px;
+            border-radius: 6px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -80px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        /* Centered buttons */
+        .w3-center {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        /* Media query for responsive design */
+        @media only screen and (max-width: 768px) {
+            .form-container {
+                padding: 20px;
+                margin: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="w3-container form-container">
+    <h2>Student Survey Form</h2>
+    <form action="" method="post" class="w3-container">
+
+        
+        <div class="section-title">Personal Information</div>
+        <label>First Name:</label>
+        <input type="text" name="first_name" class="w3-input w3-border w3-round" required><br>
+
+        <label>Last Name:</label>
+        <input type="text" name="last_name" class="w3-input w3-border w3-round" required><br>
+
+        <label>Street Address:</label>
+        <input type="text" name="street_address" class="w3-input w3-border w3-round" required><br>
+
+        <label>City:</label>
+        <input type="text" name="city" class="w3-input w3-border w3-round" required><br>
+
+        <label>State:</label>
+        <input type="text" name="state" class="w3-input w3-border w3-round" required><br>
+
+        <label>ZIP Code:</label>
+        <input type="text" name="zip" class="w3-input w3-border w3-round" required><br>
+
+        <label>Telephone Number:</label>
+        <input type="tel" name="telephone" class="w3-input w3-border w3-round" required><br>
+
+        <label>Email:</label>
+        <input type="email" name="email" class="w3-input w3-border w3-round" required><br>
+
+        <label>Date of Survey:</label>
+        <input type="date" name="survey_date" class="w3-input w3-border w3-round" required><br>
+
+        <div class="section-title">Preferences</div>
+        <p>What did you like most about the campus?</p>
+        <input type="checkbox" name="likes" value="students"> Students<br>
+        <input type="checkbox" name="likes" value="location"> Location<br>
+        <input type="checkbox" name="likes" value="campus"> Campus<br>
+        <input type="checkbox" name="likes" value="atmosphere"> Atmosphere<br>
+        <input type="checkbox" name="likes" value="dorm_rooms"> Dorm Rooms<br>
+        <input type="checkbox" name="likes" value="sports"> Sports<br>
+
+        <p>How did you become interested in our university?</p>
+        <input type="radio" name="interest_source" value="friends" required> Friends<br>
+        <input type="radio" name="interest_source" value="television"> Television<br>
+        <input type="radio" name="interest_source" value="internet"> Internet<br>
+        <input type="radio" name="interest_source" value="other"> Other<br>
+
+        <p>How likely are you to recommend our university to others?</p>
+        <select name="recommendation" class="w3-select w3-border w3-round" required>
+            <option value="" disabled selected>Select an option</option>
+            <option value="very_likely">Very Likely</option>
+            <option value="likely">Likely</option>
+            <option value="unlikely">Unlikely</option>
+        </select><br><br>
+
+        <div class="section-title">Raffle (Optional)</div>
+        <label>Enter at least ten comma-separated numbers (1-100) <span class="tooltip">🛈
+            <span class="tooltiptext">Enter numbers like this: 10,23,45,...</span>
+        </span>:</label>
+        <input type="text" name="raffle" class="w3-input w3-border w3-round"><br>
+
+        <div class="section-title">Additional Comments</div>
+        <label>Additional Comments:</label>
+        <textarea name="comments" class="w3-input w3-border w3-round" rows="4"></textarea><br>
+
+        <div class="w3-center">
+            <button type="submit" class="w3-button w3-green w3-round-large">Submit</button>
+            <button type="reset" class="w3-button w3-red w3-round-large">Reset</button>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>
