@@ -1,4 +1,4 @@
-//  GroupName: TeamPRTV (Preethi Ranganathan, Mary Rithika Reddy Gade, Tarun Vinay Gujjar, Vikas Halgar Seetharam)
+//  GroupName: TODO
 //  Jenkinsfile defines the pipeline in scm and here, there are 4 stages in
 //  this CICD pipeline: Build, Docker build, Push to Docker Hub, Kubectl Get All Nodes, Deploying Rancher to single node
 
@@ -9,8 +9,8 @@ def generateTag() {
 // Pipeline Stages
 pipeline {
     environment {
-        registry = 'tarungujjar/survey'
-        registryCredential = '8ce51330-a1b1-4452-b526-5677a1d0a9d0'
+        registry = 'sakshamnayyar/survey-ngnix'
+        registryCredential = '5f83bb2f-b8fd-4d76-a898-ec9823274729'
     }
     agent any
 
@@ -32,7 +32,7 @@ pipeline {
             steps {
                 script {
                     docker.withRegistry('', registryCredential) {
-                        def customImage = docker.build('tarungujjar/survey:' + tag)
+                        def customImage = docker.build('sakshamnayyar/survey-ngnix:' + tag)
                     }
                 }
             }
@@ -43,7 +43,7 @@ pipeline {
                 script {
                     // sh 'echo ${BUILD_TIMESTAMP}'
                     docker.withRegistry('', registryCredential) {
-                        def image = docker.build('tarungujjar/survey:' + tag, '.')
+                        def image = docker.build('sakshamnayyar/survey-ngnix:' + tag, '.')
                         docker.withRegistry('', registryCredential) {
                             image.push()
                         }
@@ -64,7 +64,7 @@ pipeline {
             steps {
                 script {
                 	//sh 'kubectl apply -f deployment.yaml'
-                    sh 'kubectl set image deployment/swe645-deployment -n swe645-namespace container-0=tarungujjar/survey:' + tag
+                    sh 'kubectl set image deployment/deployment -n swe645-namespace container-0=Sakshamnayyar/survey-ngnix:' + tag
                 }
             }
         }
