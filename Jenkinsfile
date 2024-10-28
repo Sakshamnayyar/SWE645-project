@@ -13,7 +13,7 @@ pipeline {
         DOCKERFILE_PATH = 'Dockerfile' // Path to Dockerfile in your GitHub repository
         DEPLOYMENT_YAML_PATH = 'deployment.yaml' // Path to your Kubernetes deployment file in the repo
         SERVICE_YAML_PATH = 'service.yaml' // Path to your Kubernetes service file in the repo
-        DOCKER_CREDENTIALS_ID = '5f83bb2f-b8fd-4d76-a898-ec9823274729' // Make sure this matches the ID in Jenkins credentials
+        DOCKER_CREDENTIALS_ID = '6d426341-5b52-45ed-b720-461faa310375' // Make sure this matches the ID in Jenkins credentials
 
     }
 
