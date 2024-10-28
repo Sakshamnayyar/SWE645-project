@@ -35,13 +35,8 @@ pipeline {
         stage('Push Docker Image') {
     steps {
         script {
-            // Get Docker Hub credentials
-            withCredentials([string(credentialsId: 'docker_cred', variable: 'DOCKER_CREDENTIALS')]) {
-                // Login to Docker Hub
-                sh "echo \$DOCKER_CREDENTIALS | docker login --username ${DOCKER_USERNAME} --password-stdin"
-
-                // Push Docker image to Docker Hub
-                docker.image("${DOCKER_IMAGE}:${DOCKER_TAG}").push()
+            docker.withRegistry('https://index.docker.io/v1/', 'DOCKER_CREDENTIALS_ID') {
+                docker.image(DOCKER_IMAGE).push()
             }
         }
     }
@@ -50,11 +45,15 @@ pipeline {
 
         stage('Deploy to Kubernetes') {
             steps {
-                script {
-                    // Deploy the Kubernetes deployment and service
-                    sh "kubectl apply -f ${DEPLOYMENT_YAML_PATH}"
-                    sh "kubectl apply -f ${SERVICE_YAML_PATH}"
+                withCredentials([file(credentialsId: 'kubeconfig', variable: 'KUBECONFIG')]) {
+                    sh 'kubectl apply -f ${DEPLOYMENT_YAML_PATH}'
+                    sh 'kubectl apply -f ${SERVICE_YAML_PATH}'
                 }
+                // script {
+                //     // Deploy the Kubernetes deployment and service
+                //     sh "kubectl apply -f ${DEPLOYMENT_YAML_PATH}"
+                //     sh "kubectl apply -f ${SERVICE_YAML_PATH}"
+                // }
             }
         }
     }
